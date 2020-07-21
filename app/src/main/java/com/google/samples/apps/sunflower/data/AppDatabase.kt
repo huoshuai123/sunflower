@@ -24,7 +24,6 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.google.samples.apps.sunflower.converters.StringListConverters
 import com.google.samples.apps.sunflower.utilities.DATABASE_NAME
 import com.google.samples.apps.sunflower.workers.SeedDatabaseWorker
 
@@ -32,7 +31,7 @@ import com.google.samples.apps.sunflower.workers.SeedDatabaseWorker
  * The Room database for this app
  */
 @Database(entities = [GardenPlanting::class, Plant::class, Animal::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class, StringListConverters::class)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun gardenPlantingDao(): GardenPlantingDao
     abstract fun plantDao(): PlantDao

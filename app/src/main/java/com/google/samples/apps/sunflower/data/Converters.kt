@@ -17,6 +17,7 @@
 package com.google.samples.apps.sunflower.data
 
 import androidx.room.TypeConverter
+import java.lang.StringBuilder
 import java.util.Calendar
 
 /**
@@ -27,4 +28,24 @@ class Converters {
 
     @TypeConverter fun datestampToCalendar(value: Long): Calendar =
             Calendar.getInstance().apply { timeInMillis = value }
+
+    @TypeConverter
+    fun StringListToString(list: List<String>) : String{
+        if(list.isEmpty()){
+            return ""
+        }
+        val str = StringBuilder(list[0])
+        list.forEachIndexed { index, value ->
+            if(index != 0){
+                str.append(',')
+            }
+            str.append(value)
+        }
+        return str.toString()
+    }
+
+    @TypeConverter
+    fun StringToListString(str: String): List<String>{
+        return str.split(',')
+    }
 }
