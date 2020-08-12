@@ -19,14 +19,8 @@ package com.google.samples.apps.sunflower.utilities
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.samples.apps.sunflower.api.UnsplashService
-import com.google.samples.apps.sunflower.data.AppDatabase
-import com.google.samples.apps.sunflower.data.GardenPlantingRepository
-import com.google.samples.apps.sunflower.data.PlantRepository
-import com.google.samples.apps.sunflower.data.UnsplashRepository
-import com.google.samples.apps.sunflower.viewmodels.GalleryViewModelFactory
-import com.google.samples.apps.sunflower.viewmodels.GardenPlantingListViewModelFactory
-import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModelFactory
-import com.google.samples.apps.sunflower.viewmodels.PlantListViewModelFactory
+import com.google.samples.apps.sunflower.data.*
+import com.google.samples.apps.sunflower.viewmodels.*
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
@@ -43,6 +37,10 @@ object InjectorUtils {
                 AppDatabase.getInstance(context.applicationContext).gardenPlantingDao())
     }
 
+    private fun getAnimalRepository(context: Context):AnimalRepository{
+        return AnimalRepository.getInstance(AppDatabase.getInstance(context.applicationContext).animalDao())
+    }
+
     fun provideGardenPlantingListViewModelFactory(
         context: Context
     ): GardenPlantingListViewModelFactory {
@@ -52,6 +50,9 @@ object InjectorUtils {
     fun providePlantListViewModelFactory(fragment: Fragment): PlantListViewModelFactory {
         return PlantListViewModelFactory(getPlantRepository(fragment.requireContext()), fragment)
     }
+
+    fun provideAnimalListViewModelFactory(fragment: Fragment) =
+            AnimalListViewModelFactory(getAnimalRepository(fragment.requireContext()), fragment)
 
     fun providePlantDetailViewModelFactory(
         context: Context,

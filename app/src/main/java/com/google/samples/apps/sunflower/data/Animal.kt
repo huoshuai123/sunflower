@@ -19,8 +19,6 @@ package com.google.samples.apps.sunflower.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.google.samples.apps.sunflower.converters.StringListConverters
 
 @Entity(tableName = "animals")
 data class Animal (

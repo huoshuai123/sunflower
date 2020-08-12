@@ -22,8 +22,10 @@ import androidx.room.Query
 
 @Dao
 interface AnimalDao {
+
     @Query("select * from animals order by name")
     fun getAnimals(): LiveData<List<Animal>>
+
 //    @Query("select * from animals where foodPlantIds in ")
 //    fun getAnimalsByFood(foodId: String): LiveData<List<Animal>>
 }
